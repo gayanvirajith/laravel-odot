@@ -9,8 +9,8 @@ class ToDoListController extends \BaseController {
 	 */
 	public function index()
 	{
-		
-		return View::make('todos.index');
+		$todo_lists = TodoList::all();
+		return View::make('todos.index')->with('todo_lists', $todo_lists);
 	}
 
 
@@ -44,7 +44,8 @@ class ToDoListController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return View::make('todos.show')->withId($id);
+		$list = User::findOrFail($id);
+		return View::make('todos.show')->withId($id)->withList($list);
 	}
 
 
