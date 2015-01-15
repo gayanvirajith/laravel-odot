@@ -2,6 +2,10 @@
 
 class ToDoListController extends \BaseController {
 
+	public function __construct() {
+		$this->beforeFilter('csrf', array('on' => 'post'));
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -21,7 +25,7 @@ class ToDoListController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('todos.create');
 	}
 
 
@@ -32,7 +36,22 @@ class ToDoListController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		// define validator rules
+		$rules = array('required', 'unique:todo_lists,name');
+
+		// pass input to validator
+		$validator = Validator::make(Input::all(), $rules);
+
+		// test if input fails
+		if ($validator->fails()) {
+			return Redirect::route('todos.create');
+		}
+
+		$name = Input::get('title');
+		$list = new TodoList();
+		$list->name = $name;
+		$list->save();
+		return Redirect::route('todos.index');
 	}
 
 
