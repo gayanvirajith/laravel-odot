@@ -37,14 +37,18 @@ class ToDoListController extends \BaseController {
 	public function store()
 	{
 		// define validator rules
-		$rules = array('required', 'unique:todo_lists,name');
+		$rules = array(
+			'title' => array('required', 'unique:todo_lists,name')
+			);
 
 		// pass input to validator
 		$validator = Validator::make(Input::all(), $rules);
 
 		// test if input fails
 		if ($validator->fails()) {
-			return Redirect::route('todos.create');
+			return Redirect::route('todos.create')
+				->withErrors($validator)
+				->withInput();
 		}
 
 		$name = Input::get('title');
