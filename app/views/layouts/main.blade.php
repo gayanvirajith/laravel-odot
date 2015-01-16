@@ -24,6 +24,14 @@
       </div>
     </header>
 
+    @if(Session::has('message'))
+    <div class="container">
+      <div class="alert alert-info" role="alert">
+        {{{ Session::get('message' ) }}}
+      </div>
+    </div>
+    @endif
+
     <div class="main">
       <div class="container">
         @yield('content')

@@ -55,7 +55,7 @@ class ToDoListController extends \BaseController {
 		$list = new TodoList();
 		$list->name = $name;
 		$list->save();
-		return Redirect::route('todos.index');
+		return Redirect::route('todos.index')->withMessage('List was created.');
 	}
 
 
