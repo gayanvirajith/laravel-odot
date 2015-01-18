@@ -12,6 +12,8 @@
     </div>
     <div class="form-group">
       {{ Form::submit('Submit', array('class' => 'btn btn-lg btn-primary')); }}
+      {{ link_to_route('todos.index', 'Back to List', null, array('class' => 'btn btn-lg btn-primary')) }}
+  
     </div>
 
     {{ Form::close() }}

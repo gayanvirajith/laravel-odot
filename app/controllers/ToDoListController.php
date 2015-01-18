@@ -67,7 +67,7 @@ class ToDoListController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		$list = User::findOrFail($id);
+		$list = TodoList::findOrFail($id);
 		return View::make('todos.show')->withId($id)->withList($list);
 	}
 
