@@ -16,7 +16,11 @@
           {{ link_to_route('todos.show', 'Show', array($list->id), 
             array('class' => 'btn btn-sm btn-primary')) }}
           {{ link_to_route('todos.edit', 'Edit', array($list->id),
-            array('class' => 'btn btn-sm btn-primary')) }}                    
+            array('class' => 'btn btn-sm btn-primary')) }}  
+          {{ Form::model($list, [ 'route' => ['todos.destroy', $list->id], 
+            'method' => 'DELETE', 'style' => 'display:inline' ])}}
+            {{ Form::button('Destroy', ['type' => 'submit', 'class' => 'btn btn-sm btn-primary']) }}
+          {{ Form::close() }}                  
         </td>
       </tr>
       @endforeach

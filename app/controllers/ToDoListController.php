@@ -127,7 +127,8 @@ class ToDoListController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$list = TodoList::findOrFail($id)->delete();
+		return Redirect::route('todos.index')->withMessage('Item deleted!');
 	}
 
 
