@@ -38,7 +38,7 @@ class ToDoListController extends \BaseController {
 	{
 		// define validator rules
 		$rules = array(
-			'title' => array('required', 'unique:todo_lists,name')
+			'name' => array('required', 'unique:todo_lists')
 			);
 
 		// pass input to validator
@@ -51,7 +51,7 @@ class ToDoListController extends \BaseController {
 				->withInput();
 		}
 
-		$name = Input::get('title');
+		$name = Input::get('name');
 		$list = new TodoList();
 		$list->name = $name;
 		$list->save();
