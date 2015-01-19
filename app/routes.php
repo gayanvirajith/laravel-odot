@@ -18,6 +18,6 @@ Route::get('/', 'ToDoListController@index');
 
 Route::resource('todos', 'ToDoListController');
 
-// Event::listen('illuminate.query', function($query){
-//   var_dump($query);
-// });
+Event::listen('illuminate.query', function($query){
+  var_dump($query);
+});
